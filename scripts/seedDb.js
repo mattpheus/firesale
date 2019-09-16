@@ -13,19 +13,19 @@ const seedDb = async () => {
     const user1 = await User.create({
       name: 'Matt Seecharan',
       email: 'matt@gmail.com',
-      password: '123'
+      password: 'pass123'
     })
 
     const user2 = await User.create({
       name: 'Test Name',
       email: 'test@gmail.com',
-      password: '1234'
+      password: 'pass1234'
     })
 
     const user3 = await User.create({
       name: 'Lori Hines',
       email: 'lori@gmail.com',
-      password: '12345'
+      password: '12345pass'
     })
 
     const electricProd1 = await Product.create({
@@ -84,6 +84,9 @@ const seedDb = async () => {
 
     await userComment2.setProduct(electricProd2)
     await userComment2.setUser(user2)
+
+    await userComment3.setProduct(electricProd3)
+    await userComment3.setUser(user3)
 
 
 

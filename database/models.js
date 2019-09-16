@@ -24,14 +24,6 @@ const User = db.define('user',{
 
 })
 
-User.beforeCreate(async (user, options) => {
-  const hashedPassword = await bcrypt.hash(
-    user.password,
-    12
-  )
-  user.password = hashedPassword
-})
-
 //products model
 const Product = db.define("products",{
   category: Sequelize.STRING,
@@ -56,6 +48,14 @@ const Checkout = db.define("checkout",{
   userId: Sequelize.INTEGER
 })
 
+User.beforeCreate(async (user, options) => {
+  const hashedPassword = await bcrypt.hash(
+    user.password,
+    Number(process.env.SALT_ROUNDS)
+  )
+  user.password = hashedPassword
+})
+
 Product.hasMany(Comment)
 Comment.belongsTo(Product)
 
@@ -70,3 +70,4 @@ module.exports = {
   Comment,
   Checkout
 }
+

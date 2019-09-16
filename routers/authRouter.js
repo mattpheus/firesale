@@ -5,6 +5,7 @@ const { passport, jwtSign } = require('../auth/auth')
 authRouter.post('/login', (req, res, next) => {
   passport.authenticate('login', async (err, user, info) => {
     try {
+      debugger;
       if(err) {
         const error = new Error(`An Error Occured: ${JSON.stringify(info)}`)
         return next(error)
@@ -54,8 +55,8 @@ authRouter.post('/signup', (req, res, next) => {
 
       return res.json({ user, token, message: info.message })
     }
-    catch(e) {
-      return next(e)
+    catch(error) {
+      return next(error)
     }
   })(req, res, next)
 })

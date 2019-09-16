@@ -1,6 +1,6 @@
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
-const { User } = require('../models')
+const { User } = require('../database/models')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
@@ -41,8 +41,10 @@ passport.use('login', new LocalStrategy({
       return done(null, false, { message: 'User not found' })
     }
 
-    const validate = await bcrypt.compare(password, user.password)
+    console.log(password, user.password);
 
+    const validate = await bcrypt.compare(password, user.password)
+    
     if (!validate) {
       return done(null, false, { message: 'Wrong password' })
     }

@@ -57,7 +57,7 @@ class LoginForm extends React.Component {
     }
 
     if (isSignedIn) {
-      return <Redirect to={`/products/${localStorage.getItem('userId')}`} />
+      return <Redirect to={`/products`} />
     }
 
     return (

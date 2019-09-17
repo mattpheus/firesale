@@ -16,8 +16,6 @@ prodRouter.get('/', async (request, response) => {
   }
 })
 
-
-
 prodRouter.put('/:id', async (request, response) => {
 	try {
 		const id = request.params.id
@@ -50,6 +48,5 @@ prodRouter.get('/:id', async (request, response) => {
 		response.status(404).json({ msg: error.message })
 	}
 })
-
 
 module.exports = prodRouter

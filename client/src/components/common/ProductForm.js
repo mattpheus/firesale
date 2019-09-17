@@ -1,7 +1,7 @@
 import React from 'react'
-import { createComment, deleteComment } from '../../services/apiService'
+import { updateProduct } from '../../services/apiService'
 
-class Comments extends React.Component {
+class UpdateProduct extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -16,13 +16,13 @@ class Comments extends React.Component {
         })
     }
 
-    // handleSubmit = async (event) => {
-    //     event.preventDefault()
-    //     let { description } = this.state 
+    handleSubmit = async (event) => {
+        event.preventDefault()
+        let { description } = this.state 
         
-    //     await  (this.props.productId,{description})
-    //     this.props.
-    // }
+        await updateProduct (this.props.productId,{description})
+        this.props.fetchProducts()
+    }
 
     render() {
         console.log(this.state.description)
@@ -38,4 +38,5 @@ class Comments extends React.Component {
     }
 }
 
-export default Comments
+export default UpdateProduct
+

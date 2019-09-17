@@ -4,12 +4,12 @@ import { Route, Link } from 'react-router-dom'
 
 // Components
 import Login from './components/screens/Login'
-import ProtectedRoute from './components/ProtectedRoute'
+import ProtectedRoute from './components/common/ProtectedRoute'
 
 // Helper functions
 import { login, getProducts } from '../src/services/apiService'
 import authService from '../src/services/authService';
-import ProductsHome from './components/screens/ProductsHome';
+import ProductsHome from '../src/components/screens/ProductsHome';
 
 // Css
 import './App.css';
@@ -20,7 +20,7 @@ class App extends React.Component {
 
     this.state = {
       isSignedIn: false,
-      user: {}
+      user: ''
     }
   }
 
@@ -33,7 +33,7 @@ class App extends React.Component {
         }
       })
     }
-    catch(error) {
+    catch (error) {
       throw error
     }
   }
@@ -43,11 +43,11 @@ class App extends React.Component {
       const user = await login(credentials)
 
       this.setState({
-          isSignedIn: true,
-          user: user
-        })
+        isSignedIn: true,
+        user: user
+      })
     }
-    catch(error) {
+    catch (error) {
       throw error
     }
   }
@@ -63,40 +63,44 @@ class App extends React.Component {
     })
   }
 
-  render(){
+  render() {
     const { isSignedIn, user } = this.state
     return (
       <div className="App">
         <nav>
           <div></div>
-
           {
             isSignedIn &&
             <div><Link to="/products"></Link></div>
           }
-
           {
             !isSignedIn ? (
               <div><Link to="/login">Login</Link></div>
             ) : (
-              <button onClick={this.signOutUser}>Sign Out</button>
-            )
+                <button onClick={this.signOutUser}>Sign Out</button>
+              )
           }
         </nav>
 
         <main>
           {/* <Route exact path="/" component={ProductsHome} /> */}
           <ProtectedRoute
-            path='/products/:id'
+            path='/products'
             user={user}
             component={ProductsHome}
           />
           <Route
+            exact
             path="/"
             render={(props) =>
               <Login {...props} handleLogin={this.loginUser} isSignedIn={isSignedIn} />
             }
           />
+          <Route exact path={`/products/:id`} render={(props) =>
+              <Login {...props} handleLogin={this.loginUser} isSignedIn={isSignedIn} />
+            } />
+          {/* <ProductsHome/> */}
+
         </main>
       </div>
 

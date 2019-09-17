@@ -2,7 +2,18 @@ const express = require('express')
 const CommentRouter = express.Router()
 const { Product, Comment, User } = require('../database/models')
 
-CommentRouter.post('/:prod_id/user/:user_id', async (req, res) => {
+CommentRouter.get('/:prod_id', async (request, response) => {
+	try {
+	  const comments = await Comment.findAll({where: {productId: req.params.prod_id}})
+		response.json(comments)
+	} catch (error) {
+	  console.error(error)
+	  throw error
+	}
+  })
+
+
+CommentRouter.post('/:prod_id', async (req, res) => {
 	try {
 		const products = await Product.findByPk(req.params.prod_id)
 		const user = await User.findByPk(req.params.user_id)
@@ -40,17 +51,3 @@ CommentRouter.delete('/:prod_id', async (req, res) => {
 })
 
 module.exports = CommentRouter
-
-
-
-
-
-
-
-
-
-
-
-
-
-

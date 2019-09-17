@@ -28,6 +28,12 @@ const seedDb = async () => {
       password: '12345pass'
     })
 
+    const user4 = await User.create({
+      name: 'Bob Johnson',
+      email: 'bob@gmail.com',
+      password: '123'
+    })
+
     const electricProd1 = await Product.create({
       category: "Electronics",
       name: "Smart Phone",

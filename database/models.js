@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize')
 const bcrypt = require('bcrypt')
 
-const db = new Sequelize( {
-  database: 'firesale_db',
+const db = new Sequelize(process.env.DATABASE_URL, {
+  // database: 'firesale_db',
   dialect: 'postgres'
 })
 

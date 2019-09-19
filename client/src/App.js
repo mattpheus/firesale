@@ -7,9 +7,10 @@ import Login from './components/screens/Login'
 import ProtectedRoute from './components/common/ProtectedRoute'
 
 // Helper functions
-import { login, getProducts } from '../src/services/apiService'
+import { login } from '../src/services/apiService'
 import authService from '../src/services/authService';
 import ProductsHome from '../src/components/screens/ProductsHome';
+import Product from '../src/components/screens/Product'
 
 // Css
 import './App.css';
@@ -85,6 +86,7 @@ class App extends React.Component {
         <main>
           {/* <Route exact path="/" component={ProductsHome} /> */}
           <ProtectedRoute
+          exact
             path='/products'
             user={user}
             component={ProductsHome}
@@ -96,9 +98,7 @@ class App extends React.Component {
               <Login {...props} handleLogin={this.loginUser} isSignedIn={isSignedIn} />
             }
           />
-          <Route exact path={`/products/:id`} render={(props) =>
-              <Login {...props} handleLogin={this.loginUser} isSignedIn={isSignedIn} />
-            } />
+          <Route exact path={`/product/:id`} render={(props) => <Product {...props}/>} />
           {/* <ProductsHome/> */}
 
         </main>

@@ -1,36 +1,32 @@
 import React from 'react'
 import { getProducts, updateProduct } from '../../services/apiService'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Container from '../common/Container'
 import Card from '../common/Card'
 import Image from '../common/Image'
-import UpdateProduct from '../common/ProductForm'
-
+import UpdateProduct from '../common/ProductsForm'
 
 class ProductsHome extends React.Component {
     constructor(props) {
         super(props)
-        // this.props = props
+        this.props = props
         this.state = {
             products: [],
             userInput: '',
             description: '',
             user_id: '',
-            prodcutId: props.prodcutId
+            productId: props.productId
         }
     }
 
     componentDidMount = async () => {
         this.handleCards()
         await this.fetchProducts()
-        
+
         const updateResp = await updateProduct()
         this.setState({
             description: updateResp
         })
-        // await this.updateProduct() 
-        // await this.getProducts()
-        // await this.fetchUser()
     }
 
     fetchProducts = async () => {
@@ -57,7 +53,8 @@ class ProductsHome extends React.Component {
         let { userInput } = this.state
         let data = { product: userInput }
         const id = this.state.productId
-        // await reviewSubmit(id, data)
+        await data
+        await id
         this.props.updateProduct()
     }
 
@@ -71,26 +68,27 @@ class ProductsHome extends React.Component {
     handleCards = () => {
         return this.state.products.map(product => {
             return (
-                <Card key={product.id} to={`/products/${product.id}`}>
-                    <Image src={product.image} alt={product.name} />
-                    <Container className='card-details'>
+                <Card key={product.id}>
+                    <Link to={`product/${product.id}`}>
+                        <Image src={product.image} alt={product.name} />
+                    </Link>
+                    <Container className='card-details' key={product.id}>
                         {product.name}
                         {product.category}
                         {product.description}
                     </Container>
-                    <UpdateProduct placeholder={product.description} productId={product.id} fetchProducts={this.fetchProducts}/>
+                    <UpdateProduct placeholder={product.description} productId={product.id} fetchProducts={this.fetchProducts} />
                 </Card>
             )
         })
     }
+
     render() {
         return (
             <div className='user-container'>
-                <h1 className='welcome'>Welcome back {this.state.user_id}</h1>
+                <h2 className='welcome'>Welcome back {this.state.user_id}</h2>
                 <div className='list-of-prods'>
                     <h2>{this.handleCards()}</h2>
-
-
                 </div>
             </div>
         )

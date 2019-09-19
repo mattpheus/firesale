@@ -19,13 +19,11 @@ class UpdateProduct extends React.Component {
     handleSubmit = async (event) => {
         event.preventDefault()
         let { description } = this.state 
-        
         await updateProduct (this.props.productId,{description})
         this.props.fetchProducts()
     }
 
     render() {
-        console.log(this.state.description)
         return (
             <div>
             <form onSubmit={this.handleSubmit}>

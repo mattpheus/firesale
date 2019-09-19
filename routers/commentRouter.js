@@ -1,11 +1,22 @@
 const express = require('express')
 const CommentRouter = express.Router()
-const { Product, Comment, User } = require('../database/models')
+const { Product, Comment } = require('../database/models')
 
-CommentRouter.get('/:prod_id', async (request, response) => {
+CommentRouter.get('/', async (req, res) => {
 	try {
-	  const comments = await Comment.findAll({where: {productId: req.params.prod_id}})
-		response.json(comments)
+	  const comments = await Comment.findAll()
+		res.json(comments)
+	} catch (error) {
+	  console.error(error)
+	  throw error
+	}
+  })
+
+CommentRouter.get('/:id', async (req, res) => {
+	try {
+	  const comments = await Comment.findAll({where: {productId: req.params.id}})
+	  console.log(comments)
+		res.json(comments)
 	} catch (error) {
 	  console.error(error)
 	  throw error
@@ -13,38 +24,29 @@ CommentRouter.get('/:prod_id', async (request, response) => {
   })
 
 
-CommentRouter.post('/:prod_id', async (req, res) => {
+CommentRouter.post('/:id', async (req, res) => {
 	try {
-		const products = await Product.findByPk(req.params.prod_id)
-		const user = await User.findByPk(req.params.user_id)
-		if (products) {
+		console.log('HI')
+		console.log('commentrouterpost',req.body)
+			const product = await Product.findByPk(req.params.id)
 			const comments = await Comment.create(req.body)
-			await comments.setProduct(products)
-			await comments.setUser(user)
+			await comments.setProduct(product)
 			res.send(comments)
-		} else {
-			res.status(400).json({ error: 'Product Not Found!' })
-		}
+		
 	} catch (error) {
-		throw error
-	}
+		throw error	
+	}	
 })
 
-
-CommentRouter.delete('/:prod_id', async (req, res) => {
+CommentRouter.delete('/:id', async (req, res) => {
 	try {
-		const product = await Product.findByPk(req.params.product_id)
-		if (product) {
-			const comment = await Comment.findByPk(req.params.comment_id)
+			const comment = await Comment.findByPk(req.params.id)
 			if (comment) {
 				await comment.destroy()
-				res.json({ msg: `Comment ${req.params.comment_id} was deleted!` })
+				res.json({ msg: `Comment ${req.params.id} was deleted!` })
 			} else {
 				res.status(400).json({ error: 'Comment not found!' })
 			}
-		} else {
-			res.status(400).json({ error: 'Product not found!' })
-		}
 	} catch (error) {
 		throw error
 	}

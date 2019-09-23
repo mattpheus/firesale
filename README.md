@@ -29,6 +29,7 @@ http://fire-sale.surge.sh/
 
 
 ## _code snippet_
+```
   handleCards = () => {
         return this.state.products.map(product => {
             return (
@@ -52,6 +53,7 @@ http://fire-sale.surge.sh/
             )
         })
     }
+```
 
 -Created a card that could be dynamically used in other parts of the website.
 

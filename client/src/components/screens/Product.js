@@ -31,7 +31,6 @@ class Product extends React.Component {
     fetchComment = async () => {
         const { product: {id} } = this.state
             let findComments = await getComments(id)
-            // console.log(findComments)
             this.setState({
                 comments: findComments
             })
@@ -70,7 +69,6 @@ class Product extends React.Component {
     }
 
     handleChange = (event) => {
-        console.log (this.handleChange)
         const { name, value } = event.target
         this.setState({
             [name]: value
@@ -78,9 +76,7 @@ class Product extends React.Component {
     }
 
     renderComments = () => {
-        // console.log(this.state.comments)
         return this.state.comments.map(comment => {
-            // console.log(comment)
             return (
                 <Container className='comment-details' key={comment.id}>
 
@@ -111,7 +107,6 @@ class Product extends React.Component {
     }
 
     render() {
-        console.log(this.state.comments)
         
         return (
             <div>

@@ -41,8 +41,6 @@ passport.use('login', new LocalStrategy({
       return done(null, false, { message: 'User not found' })
     }
 
-    console.log(password, user.password);
-
     const validate = await bcrypt.compare(password, user.password)
     
     if (!validate) {

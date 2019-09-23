@@ -64,6 +64,86 @@ const seedDb = async () => {
 
     })
 
+    const electricProd4 = await Product.create({
+      category: "Electronics",
+      name: "Robot",
+      stock: 5,
+      price: 5000,
+      image: "https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1242&q=80",
+      description: "This is a unique robot that is customized."
+
+    })
+
+    const electricProd4 = await Product.create({
+      category: "Electronics",
+      name: "Robot",
+      stock: 5,
+      price: 5000,
+      image: "https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1242&q=80",
+      description: "This is a unique robot that is customized."
+
+    })
+
+    const electricProd5 = await Product.create({
+      category: "Electronics",
+      name: "Drone",
+      stock: 10,
+      price: 1000,
+      image: "https://images.unsplash.com/photo-1487887235947-a955ef187fcc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1302&q=80",
+      description: "This is a specialized drone that is meant for beginners."
+
+    })
+
+    const electricProd6 = await Product.create({
+      category: "Electronics",
+      name: "VR Headset",
+      stock: 20,
+      price: 700,
+      image: "https://images.unsplash.com/photo-1478416272538-5f7e51dc5400?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1344&q=80",
+      description: "This is a awesome VR Headset, meant for your customers."
+
+    })
+
+    const electricProd7 = await Product.create({
+      category: "Electronics",
+      name: "POS System",
+      stock: 10,
+      price: 1500,
+      image: "https://images.unsplash.com/photo-1556742044-3c52d6e88c62?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
+      description: "This is a one of a kind POS system meant for your store"
+
+    })
+
+    const electricProd8 = await Product.create({
+      category: "Electronics",
+      name: "Smart Watch",
+      stock: 50,
+      price: 299,
+      image: "https://images.unsplash.com/photo-1461141346587-763ab02bced9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1848&q=80",
+      description: "This is an awesome smart watch made by a tech company tailored for your customers."
+
+    })
+
+    const electricProd9 = await Product.create({
+      category: "Electronics",
+      name: "Smart Camera",
+      stock: 5,
+      price: 2000,
+      image: "https://images.unsplash.com/photo-1516724562728-afc824a36e84?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80",
+      description: "This is the first full frame, smart camera, it is perfect for all types of customers."
+
+    })
+
+    const electricProd10 = await Product.create({
+      category: "Electronics",
+      name: "Custom Laptop",
+      stock: 5,
+      price: 3000,
+      image: "https://images.unsplash.com/photo-1504707748692-419802cf939d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1460&q=80",
+      description: "This is a customzied crafted computer made out of the best specs available on the market, very high end."
+
+    })
+
     const userComment1 = await Comment.create({
       user:1,
       product:1,

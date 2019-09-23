@@ -47,7 +47,6 @@ class ProductsHome extends React.Component {
         this.setState({
             description: updateProducts
         })
-        console.log(event.target.value)
     }
 
     handleSubmit = async (event) => {

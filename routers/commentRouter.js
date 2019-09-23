@@ -15,7 +15,7 @@ CommentRouter.get('/', async (req, res) => {
 CommentRouter.get('/:id', async (req, res) => {
 	try {
 	  const comments = await Comment.findAll({where: {productId: req.params.id}})
-	  console.log(comments)
+
 		res.json(comments)
 	} catch (error) {
 	  console.error(error)
@@ -26,8 +26,7 @@ CommentRouter.get('/:id', async (req, res) => {
 
 CommentRouter.post('/:id', async (req, res) => {
 	try {
-		console.log('HI')
-		console.log('commentrouterpost',req.body)
+
 			const product = await Product.findByPk(req.params.id)
 			const comments = await Comment.create(req.body)
 			await comments.setProduct(product)

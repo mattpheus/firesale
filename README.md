@@ -20,11 +20,17 @@ http://fire-sale.surge.sh/
 
 ## FUTURE -> databases and relations; APIs; component library
 -adding user account sign up.
+
 -searching
+
 -more properties to be displayed on screen
+
 -having more data points and api's
+
 -profile management area
+
 -proper protected routes.
+
 -modern styling
 
 

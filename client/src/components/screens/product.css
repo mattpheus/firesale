@@ -1,0 +1,7 @@
+.line-break{
+    display: block;
+    overflow: hidden;
+    border-style: inset;
+    border-width: 1px;
+
+}

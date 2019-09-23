@@ -3,6 +3,8 @@ import { getProductById, getComments, createComments, deleteComment } from '../.
 import Container from '../common/Container'
 import Card from '../common/Card'
 import Image from '../common/Image'
+import {ProtectedRoute} from '../common/ProtectedRoute'
+import { Link } from 'react-router-dom'
 
 
 class Product extends React.Component {
@@ -53,11 +55,15 @@ class Product extends React.Component {
             <Card key={product.id} to={`/product/${product.id}`}>
                 <Image src={product.image} alt={product.name} />
                 <Container className='card-details'>
-                    {product.name}
-                    {product.category}
-                    {product.description}
-                    {product.stock}
-                    {product.price}
+                    Category- {product.category}
+                    <br></br>
+                    Name- {product.name}
+                    <br></br>
+                    Price- ${product.price}
+                    <br></br>
+                    Stock- {product.stock}
+                    <br></br>
+                    Product Description- {product.description}
                 </Container>
             </Card>
         )
@@ -77,8 +83,13 @@ class Product extends React.Component {
             // console.log(comment)
             return (
                 <Container className='comment-details' key={comment.id}>
-                    <p>{comment.description}</p>
-                    <p onClick={(event) => this.handleDelete(event, comment.id)}>Delete</p>
+
+                    <p>Comment: {comment.description} <span></span></p>
+                    ↑
+                    <button onClick={(event) => this.handleDelete(event, comment.id)}>Delete Comment</button>
+                    ↑
+
+                    {/* <button onClick={(event) => this.handleDelete(event, comment.id)}>Delete</button> */}
                 </Container>
                 
             )
@@ -95,22 +106,26 @@ class Product extends React.Component {
 
     handleDelete = async (event, id) => {
         event.preventDefault()
-        // const id = this.state.commentId
         await deleteComment(id)
         await this.fetchComment()
     }
 
     render() {
         console.log(this.state.comments)
-        return ( 
+        
+        return (
             <div>
+                <br></br>
                 {this.handleCard()}
+                <hr></hr>
                 {this.renderComments()}
                 <form onSubmit={this.handleSubmit}>
                     <input onChange={this.handleChange} value={this.description} name='description' type='text' placeholder='Create New Comment'></input>
-                    <br></br>
-                    <button onSubmit={this.handleSubmit}>Create</button>
+                    <span><button onSubmit={this.handleSubmit}>Create</button></span>
                 </form>
+                <Link to={'/products'}/>
+                <br></br>
+                <br></br>
                 
             </div>
         )

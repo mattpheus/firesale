@@ -1,7 +1,29 @@
 .App {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   text-align: center;
-  margin-bottom: 10vh;
-  margin-top: 10vh;
-  margin-left: 5vh;
-  margin-right: 5vh;
+  margin-bottom: 0%;
+  margin-top: 3%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.welcome-login-logout {
+  margin: 0px, 0px, 0px, 5px;
+}
+
+main.main-container {
+  margin: 50px, 0px, 0px, 0px;
+
+}
+
+.input {
+  transition: all .2s ease-in-out;
+  transform: scale(1.1);
+}
+
+@font-face {
+  src: url('https://fonts.googleapis.com/css?family=Dhurjati&display=swap" rel="stylesheet');
+  font-family: 'Dhurjati', sans-serif;
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
+import './loginform.css'
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -61,10 +62,10 @@ class LoginForm extends React.Component {
     }
 
     return (
-      <div>
+      <div className="login-form">
         {errorMessage}
         <form className="form" onSubmit={this.handleSubmitForm}>
-          <div>
+          <div className="email">
             <label>Email</label>
             <input
               type="text"
@@ -73,7 +74,7 @@ class LoginForm extends React.Component {
               value={this.state.email}
             />
           </div>
-          <div>
+          <div className="password">
             <label>Password</label>
             <input
               type="password"

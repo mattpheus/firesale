@@ -5,6 +5,8 @@ import Container from '../common/Container'
 import Card from '../common/Card'
 import Image from '../common/Image'
 import UpdateProduct from '../common/ProductsForm'
+import './productshome.css'
+
 
 class ProductsHome extends React.Component {
     constructor(props) {
@@ -69,16 +71,22 @@ class ProductsHome extends React.Component {
         return this.state.products.map(product => {
             return (
                 <Card key={product.id}>
+                    <br></br>
                     <Link to={`product/${product.id}`}>
-                        <Image src={product.image} alt={product.name} />
+                        <Image className="logo" src={product.image} alt={product.name} />
                     </Link>
                     <Container className='card-details' key={product.id}>
-                        {product.name}
-                        {product.category}
-                        {product.description}
+                        Category: {product.category}
+                        <br></br>
+                        Name: {product.name}
+                        <br></br>
+                        Description: {product.description}
                     </Container>
-                    <UpdateProduct placeholder={product.description} productId={product.id} fetchProducts={this.fetchProducts} />
+                    <UpdateProduct placeholder="Edit Description Here" productId={product.id} fetchProducts={this.fetchProducts} />
+                    <hr></hr>
+                    {/* {product.description} */}
                 </Card>
+                
             )
         })
     }
@@ -86,7 +94,7 @@ class ProductsHome extends React.Component {
     render() {
         return (
             <div className='user-container'>
-                <h2 className='welcome'>Welcome back {this.state.user_id}</h2>
+                <h1 className='welcome'>Welcome back! {this.state.user_id.name}</h1>
                 <div className='list-of-prods'>
                     <h2>{this.handleCards()}</h2>
                 </div>
